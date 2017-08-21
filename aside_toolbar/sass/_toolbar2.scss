@@ -1,0 +1,127 @@
+$toolbar2-size:52px;
+.toolbar2{
+	position:fixed;
+	bottom:5px;
+	left:0;
+}
+.toolbar2-item{
+	position:relative;
+	display:block;
+	width: $toolbar2-size;
+	height:$toolbar2-size;
+	margin-top:1px;
+
+	&:hover {
+	  .toolbar2-btn {
+        &:before {
+          top:-$toolbar-size;
+        }
+        &:after {
+          top:0;
+        }
+    }
+    &:after{
+      @include opacity(1);
+      @include scale(1);
+    }
+	}
+
+	&:after {
+	  content:"";
+	  position: absolute;
+	  left: $toolbar2-size - 6px;
+	  bottom: -10px;
+	  width:172px;
+	  background:url(../img/toolbar_img.png) no-repeat;
+	  @include opacity(0);
+	  @include transform-origin(5% 95%);
+	  @include scale(0.01);
+	  @include transition(all 1s);
+	}
+}
+.toolbar2-item-weixin{
+    .toolbar2-btn {
+      @extend .icon-wechat;
+      &:after {
+        content: "公众\A账号";
+      }
+    }
+    &:after{
+        content:"";
+        height: 212px;
+	    background-position:0 0;
+    }
+}
+
+.toolbar2-item-feedback{
+	.toolbar2-btn {
+      @extend .icon-feedback;
+      &:after {
+        content: "意见\A反馈";
+      }
+    }
+}
+.toolbar2-item-app{
+    .toolbar2-btn {
+          @extend .icon-app;
+          &:after {
+            content: "App\A下载";
+          }
+    }
+	&:after{
+	    content:"";
+        height: 194px;
+	    background-position:0 -222px;
+    }
+}
+.toolbar2-item-top{
+    .toolbar2-btn {
+      @extend .icon-top;
+      &:after {
+        content: "返回\A底部";
+      }
+    }
+	
+}
+
+.toolbar2-btn{
+	position:absolute;
+	left:0;
+	top:0;
+	width: $toolbar2-size;
+	height:$toolbar2-size;
+    overflow:hidden;
+
+    @extend [class^="icon-"];
+
+    &,&:before,&:after{
+      position: absolute;
+      left:0;
+      top:0;
+      width:$toolbar2-size;
+      height:$toolbar2-size;
+    }
+
+    &:before,&:after{
+      content:"";
+      color:#fff;
+      text-align:center;
+      @include transition(all 1s);
+    }
+
+    &:before{//icon
+      top:0;
+      background:#d0d6d9;
+      font-size: 30px;
+      line-height: $toolbar2-size;
+    }
+
+    &:after{//text
+      top:$toolbar2-size;
+      background:#98a1a6;
+      font-size: 12px;
+      line-height: 1.2;
+      padding-top: 12px;
+      white-space:pre;
+    }
+}

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+  *{margin:0;
+    padding:0;
+    list-style:none;}
+  .wrap{height:170px;
+        width:490px;
+        margin:60px auto;
+        overflow: hidden;
+        position: relative;
+        margin:100px auto;}
+  .wrap ul{position:absolute;} 
+  /*.wrap ul .fadeOut {
+    display: none;
+  }*/
+  .wrap ul li.fadeIn {
+    /*display: block;*/
+    opacity: 1;
+  }
+  .wrap ul li {
+    /*display: block;*/
+    /*    z-index: 200;*/
+    opacity: 0;
+    transition:all 1s;
+  }
+  .wrap ul li{height:170px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .wrap ol{position:absolute;
+           right:5px;
+           bottom:10px;}
+  .wrap ol li{height:20px; width: 20px;
+              background:#ccc;
+              border:solid 1px #666;
+              margin-left:5px;
+              color:#000;
+              float:left;
+              line-height:center;
+              text-align:center;
+              cursor:pointer;}
+  .wrap ol .on{background:#E97305;
+               color:#fff;}
+
+  </style>
+  <script type="text/javascript">
+  window.onload=function(){
+    var wrap=document.getElementById('wrap'),
+        pic=document.getElementById('pic'),
+        list=document.getElementById('list').getElementsByTagName('li'),
+        piclist=pic.getElementsByTagName('li'),
+        index=0,
+        timer=null;
+        //切换图片
+    function onchange(index){        
+            for(var i=0;i<list.length;i++){
+                list[i].className="";
+                piclist[i].className = "";
+            }
+            list[index].className="on";
+            piclist[index].className = "fadeIn";
+    }
+    //自动播放的函数
+    function play(){
+        index++;
+        if(index>=list.length){
+            index=0;
+        }
+        onchange(index);    
+    }
+    // 定义并调用自动播放函数//
+    clearInterval(timer);
+    timer=setInterval(play,1500);
+  
+    
+      /*1.  鼠标滑过整个容器时清除定时器
+2.  鼠标离开时继续执行定时器，切换至下一张图片*/
+      wrap.onmouseover=function(){
+          clearInterval(timer);
+      }
+      wrap.onmouseout=function(){
+        clearInterval(timer);
+        timer=setInterval(play,1000);  
+      }
+    for(var i=0;i<list.length;i++){
+        list[i].id=i;
+        list[i].onmouseover=function(){
+            var that=this;
+            clearInterval(timer);
+            onchange(that.id);
+        }
+        list[i].onmouseout=function(){
+            var that=this;
+            index=that.id;
+            clearInterval(timer);
+            timer=setInterval(play,1000);
+            
+        }
+    }
+      // 定义图片切换函数
+     
+     // 鼠标划过整个容器时停止自动播放
+
+     // 鼠标离开整个容器时继续播放至下一张
+    
+     // 遍历所有数字导航实现划过切换至对应的图片
+   }
+
+  </script>	
+</head>
+<body>
+  <div class="wrap" id='wrap'>
+    <ul id="pic">
+      <li class="fadeIn"><img src="http://img.mukewang.com/54111cd9000174cd04900170.jpg" alt=""></li>
+      <li ><img src="http://img.mukewang.com/54111dac000118af04900170.jpg" alt=""></li>
+      <li><img src="http://img.mukewang.com/54111d9c0001998204900170.jpg" alt=""></li>
+      <li><img src="http://img.mukewang.com/54111d8a0001f41704900170.jpg" alt=""></li>
+      <li><img src="http://img.mukewang.com/54111d7d00018ba604900170.jpg" alt=""></li>    
+    </ul>
+    <ol id="list">
+      <li class="on">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+      <li>5</li>
+    </ol>
+  </div>
+</body>
+</html>

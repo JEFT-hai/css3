@@ -1,0 +1,71 @@
+@mixin toolbar-item($pos,$hoverPos){
+	background-position: 0 $pos;
+
+	&:hover {
+	  background-position: 0 $hoverPos;
+	}
+}
+$toolbar-size: 52px;
+.toolbar-item,.toolbar-item-layer {
+	background:url(../img/toolbar.png) no-repeat;
+}
+body,html{
+	padding:0;
+	margin:0;
+	font-family:"微软雅黑";
+}
+
+.toolbar {
+	position: fixed;
+	right:0;
+	bottom:5px;
+
+	.toolbar-item {
+	    position:relative;
+	    display:block;
+	    width: $toolbar-size;
+	    height:$toolbar-size;
+	    margin-top: 1px;
+
+	    @include transition(all 1s);
+
+	    &:hover {
+	      .toolbar-item-layer {
+	        @include opacity(1);
+	        @include scale(1);
+	      }
+	    }
+	}
+	.toolbar-item-weixin{
+	    @include toolbar-item(-798px,-860px);
+
+	    .toolbar-item-layer {
+	      height: 212px;
+	      background-position: 0 0 ;
+	    }
+	}
+	.toolbar-item-feedback{
+	    @include toolbar-item(-426px,-488px);
+	}
+	.toolbar-item-app{
+	    @include toolbar-item(-550px,-612px);
+
+	    .toolbar-item-layer {
+	      height: 194px;
+	      background-position: 0 -222px ;
+	    }
+	}
+	.toolbar-item-top{
+	    @include toolbar-item(-674px,-736px);
+	}
+}
+.toolbar-item-layer {
+	    position: absolute;
+	    right:$toolbar-size - 6;
+	    bottom:-10px;
+	    width:172px;
+	    @include transition(all 1s);
+	    @include opacity(0);
+	    @include scale(0.01);
+	    @include transform-origin((95% 95%))
+	}

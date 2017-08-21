@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html leng="zh">
+<head>
+    <meta charset="utf-8">
+    <title>正方体</title>
+    <style>
+        html, body, div, span,
+        h1, h2, h3, h4, h5, h6, p
+        a, img, ol, ul, li
+        {
+            margin:0;padding:0;border:0;outline:0;
+        }
+        #my3dspace{
+            -webkit-perspective: 800px;
+            -webkit-perspective-origin:50% 50%;
+        }
+        #pagegroup{
+            width:200px;
+            height: 200px;
+            position:relative;
+            -webkit-transform-style: preserve-3d;
+            margin:200px auto 10px;
+
+            -webkit-transition: -webkit-transform .6s linear;
+            
+        }
+
+        .page{
+            width:200px;
+            height:200px;
+            padding:0;
+            background:rgba(0,0,0,0.6);
+            
+            line-height:200px;
+            color:#fff;
+            text-align:center;
+            font-size: 100px;
+            
+            position:absolute;
+            
+            
+        }
+        #page1{
+            -webkit-transform: translateZ(100px);
+        }
+        #page2{
+            -webkit-transform: rotateY(-90deg) translateZ(100px);
+        }
+        #page5{
+            -webkit-transform: rotateY(90deg) translateZ(100px);
+        }
+        #page3{
+            -webkit-transform: rotateX(90deg) translateZ(100px);
+        }
+        #page4{
+            -webkit-transform: rotateX(-90deg) translateZ(100px);
+        }
+        #page6{
+            -webkit-transform: translateZ(-100px) rotateX(180deg);
+        }
+        .op{
+            text-align: center;
+            margin: 40px auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="my3dspace">
+        <div id="pagegroup">
+            <div class="page" id="page1">1</div>
+            <div class="page" id="page2">2</div>
+            <div class="page" id="page3">3</div>
+            <div class="page" id="page4">4</div>
+            <div class="page" id="page5">5</div>
+            <div class="page" id="page6">6</div>
+        </div>
+    </div>
+    <div class="op">
+        <input type="button" class="button" value="up" onclick="change(this)"/>
+        <input type="button" class="button" value="down" onclick="change(this)"/>
+        <input type="button" class="button" value="left" onclick="change(this)"/>
+        <input type="button" class="button" value="right" onclick="change(this)"/>
+        <input type="button" class="button" value="random" onclick="change(this)"/>
+    </div>   
+</body>
+   <script type="text/javascript">
+       function $(id){
+            return document.getElementById(id);
+        }
+        var btn;
+        var item = $("pagegroup");
+        var up_down_deg = 0;
+        var left_right_deg = 0;
+        function change(btn) {
+            switch (btn.value) {
+                case "up":
+                    up_down_deg = up_down_deg + 90;
+                    item.style.webkitTransform = "rotateX("+up_down_deg+"deg) rotateY("+left_right_deg+"deg)";
+                    break;
+                case "down":
+                    up_down_deg = up_down_deg - 90;
+                    item.style.webkitTransform = "rotateX("+up_down_deg+"deg) rotateY("+left_right_deg+"deg)";
+                    break;
+                case "left":
+                    left_right_deg = left_right_deg - 90;
+                    item.style.webkitTransform = "rotateX("+up_down_deg+"deg) rotateY("+left_right_deg+"deg)";
+                    break;
+                case "right":
+                    left_right_deg = left_right_deg + 90;
+                    item.style.webkitTransform = "rotateX("+up_down_deg+"deg) rotateY("+left_right_deg+"deg)";
+                    break;
+                case "random":
+                    var random1=Math.floor(Math.random()*5);
+                    var random2=Math.floor(Math.random()*5);
+                    item.style.webkitTransform = "rotateX("+random1*90+"deg) rotateY("+random2*90+"deg)";
+                    break;
+
+            }
+        }
+   </script>
+</html>

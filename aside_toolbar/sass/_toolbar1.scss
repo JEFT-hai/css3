@@ -1,0 +1,110 @@
+@font-face {
+  font-family: 'sell-icon';
+  src:  url('fonts/sell-icon.eot?efcloa');
+  src:  url('fonts/sell-icon.eot?efcloa#iefix') format('embedded-opentype'),
+    url('fonts/sell-icon.ttf?efcloa') format('truetype'),
+    url('fonts/sell-icon.woff?efcloa') format('woff'),
+    url('fonts/sell-icon.svg?efcloa#sell-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'sell-icon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-app:before {
+  content: "\e901";
+}
+.icon-top:before {
+  content: "\e902";
+}
+.icon-feedback:before {
+  content: "\e903";
+}
+.icon-wechat:before {
+  content: "\e900";
+}
+$toolbar1-size: 52px;
+.toolbar1-item,.toolbar1-btn,.toolbar1-icon,.toolbar1-text{
+	width:$toolbar-size;
+	height:$toolbar-size;
+}
+.toolbar1-icon,.toolbar1-text{
+    position:absolute;
+	left:0;
+    color:#fff;
+    text-align:center;
+}
+.toolbar1{
+	position:fixed;
+	bottom:5px;
+	left:50%;
+	margin-left:-$toolbar1-size / 2;
+}
+.toolbar1-item{
+	position:relative;
+	display:block;
+	margin-top: 1px;
+
+	&:hover {
+	  .toolbar1-icon {
+	    top: -$toolbar1-size;
+	  }
+	  .toolbar1-text {
+	    top: 0 ;
+	  }
+	  .toolbar1-layer {
+	    @include opacity(1);
+	    @include scale(1);
+	  }
+	}
+}
+.toolbar1-btn{
+    position:absolute;
+	overflow:hidden;
+}
+.toolbar1-icon{
+	top:0;
+	background:#d0d6d9;
+	line-height:$toolbar-size;
+	font-size:30px;
+}
+
+.toolbar1-text{
+	top:100%;
+	background:#98a1a6;
+	padding-top: 12px;
+	font-size:12px;
+	line-height: 1.2;
+}
+.toolbar1-layer{
+	position: absolute;
+	right:$toolbar-size - 6;
+	bottom:-10px;
+	width:172px;
+	background: url(../img/toolbar_img.png) no-repeat;
+	@include opacity(0);
+	@include scale(0.01);
+	@include transform-origin(95% 95%);
+	@include transition(all 1s);
+}
+.toolbar1-layer-weixin{
+	height: 212px;
+	background-position:0 0;
+}
+.toolbar1-layer-app{
+	height: 194px;
+	background-position:0 -222px;
+}
